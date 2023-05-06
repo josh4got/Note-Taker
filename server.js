@@ -40,3 +40,16 @@ app.get("/api/notes", (req, res) => {
   const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
   res.json(notes);
 });
+// route to handle delete requests for notes
+app.delete("/api/notes/:id", (req, res) => {
+  const idToDelete = req.params.id;
+  const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  const toDelete = notes.findIndex((note) => note.id === idToDelete);
+  if (toDelete >= 0) {
+    notes.splice(toDelete, 1);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+    res.json({ message: "Note deleted" });
+  } else {
+    res.status(404).send("Note not found");
+  }
+});
