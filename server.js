@@ -1,11 +1,16 @@
 // requires express and path
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
+// helper method for generating unique ids
+const uuid = require("./helpers/uuid");
 // sets up the express port
 const PORT = process.env.port || 3001;
 // starts the express app
 const app = express();
-// uses the express app
+// middleware for parsing JSON and urlencoded form data and set the public folder as a static folder
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 // route for landing page
 app.get("/", (req, res) =>
@@ -15,16 +20,23 @@ app.get("/", (req, res) =>
 app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "public/notes.html"))
 );
+// starts the server
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
 
-// TODO: have save icon appear when note title and text entered
-
-// TODO: when save icon is clicked the new is saved and appears in the left column
-
-// TODO: when a note title in the left column is clicked the note appears in the right column
-
-// TODO: when I click on the write icon in the navigation at the top of the page I am presented with empty fields to enter a new note title and the note's text in the right column
-
-// TODO: when I click on the trash icon next to a note in the left column that note is deleted
+// route to handle post requests to add a note
+app.post("/api/notes", (req, res) => {
+  const newNote = req.body;
+  const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  const newNoteId = uuid();
+  newNote.id = newNoteId;
+  notes.push(newNote);
+  fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+  res.json(newNote);
+});
+// route to handle get requests for notes
+app.get("/api/notes", (req, res) => {
+  const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  res.json(notes);
+});
