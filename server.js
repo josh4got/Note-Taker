@@ -6,10 +6,10 @@ const fs = require("fs");
 const uuid = require("./helpers/uuid");
 // import routes
 const routes = require("./routes");
-// sets up the express port
-const port = process.env.port || 3001;
 // starts the express app
 const app = express();
+// sets port to 3001 and allows heroku to set port
+const port = process.env.port || 3001;
 // middleware for parsing JSON and urlencoded form data and set the public folder as a static folder
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
