@@ -7,7 +7,7 @@ const uuid = require("./helpers/uuid");
 // import routes
 const routes = require("./routes");
 // sets up the express port
-const PORT = process.env.port || 3001;
+const port = process.env.port || 3001;
 // starts the express app
 const app = express();
 // middleware for parsing JSON and urlencoded form data and set the public folder as a static folder
