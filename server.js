@@ -17,11 +17,11 @@ app.use(express.static("docs"));
 app.use("", routes);
 // route for landing page
 app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "docs/index.html"))
+  res.sendFile(path.join(__dirname, "public/index.html"))
 );
 // route for notes page
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "docs/notes.html"))
+  res.sendFile(path.join(__dirname, "public/notes.html"))
 );
 // starts the server
 app.listen(port, () => {
