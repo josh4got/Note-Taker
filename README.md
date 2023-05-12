@@ -20,21 +20,25 @@ This project taught me how to use Node.js and Express to build a website back-en
 
 ## Installation
 
-To use this application, you will need to have Node.js installed on your system. You can download Node.js from the [official website.](https://nodejs.org/en)
+No installations are required to use this web application.
 
 ## Usage
 
-To use this application a user can enter the "node index.js" command within an integrated terminal. From there the user will answer each question as prompted within the terminal. following the prompts a user will see a success message and the new logo.svg file will now be created. The file will be placed in the output folder and named "logo.svg"
+[Deployed Webpage](https://note-keeper-app1.herokuapp.com/)
+
+To use this application a user can will click the "get started" button. Then a user can enter a name and text for a note. From there the user will select the save button to save the note. The user can then delete, edit, or create new notes as desired by using the buttons on the web application.
 
 <br>
 
-![Ex-Logo](./images/ex-logo.PNG)
+![Deployed](./public/assets/images/Deployed.PNG)
 
 ## Credits
 
 [Heroku](https://docs.npmjs.com/)
 
 [Node.js](https://nodejs.org/en)
+
+[Express](https://expressjs.com/en/guide/routing.html)
 
 ## License
 
