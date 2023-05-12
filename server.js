@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 // middleware for parsing JSON and urlencoded form data and set the public folder as a static folder
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("docs"));
+app.use(express.static("public"));
 app.use("", routes);
 // route for landing page
 app.get("/", (req, res) =>
