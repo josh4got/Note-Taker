@@ -13,15 +13,15 @@ const port = process.env.PORT || 3001;
 // middleware for parsing JSON and urlencoded form data and set the public folder as a static folder
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static("docs"));
 app.use("", routes);
 // route for landing page
 app.get("/", (req, res) =>
-  res.sendFile(path.join(__dirname, "public/index.html"))
+  res.sendFile(path.join(__dirname, "docs/index.html"))
 );
 // route for notes page
 app.get("/notes", (req, res) =>
-  res.sendFile(path.join(__dirname, "public/notes.html"))
+  res.sendFile(path.join(__dirname, "docs/notes.html"))
 );
 // starts the server
 app.listen(port, () => {
